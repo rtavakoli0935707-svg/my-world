@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MY WORLD | دنیای من</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap');
+:root{--bg:#090914;--panel:#141426;--purple:#9b72ff;--pink:#f071b7;--muted:#aaa8c2}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:#fff;font-family:Vazirmatn,sans-serif}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+header{height:68px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #29263e;background:#101020;position:sticky;top:0;z-index:5}
+.logo{font-size:23px;font-weight:800;color:#c3a6ff;letter-spacing:1px}
+.logo span{color:#f071b7}
+.avatar{width:39px;height:39px;border-radius:50%;background:linear-gradient(135deg,#a16aff,#f071b7);display:grid;place-items:center;font-weight:bold}
+.layout{max-width:1150px;margin:25px auto;padding:0 16px;display:grid;grid-template-columns:220px minmax(0,1fr) 230px;gap:20px}
+.panel{background:var(--panel);border:1px solid #29263e;border-radius:17px;padding:17px;margin-bottom:15px}
+nav button{display:block;width:100%;text-align:right;padding:12px;border:0;border-radius:10px;background:transparent;color:#c9c5df;margin:5px 0}
+nav button:hover,nav button.active{background:#30234e;color:#d6bdff}
+h3{margin:0 0 14px;font-size:16px}
+small,.muted{color:var(--muted)}
+.hero{padding:25px;background:linear-gradient(120deg,#342052,#19162e 65%,#402044);border-radius:18px;margin-bottom:17px}
+.hero h1{font-size:27px;margin:0 0 7px}
+.hero p{color:#d3c5e8;margin:0}
+.stories{display:flex;gap:13px;overflow-x:auto;padding:13px 0}
+.story{text-align:center;min-width:62px;font-size:12px;color:#d5cde8}
+.story .avatar{width:55px;height:55px;margin:0 auto 6px;border:2px solid #bc83ff}
+textarea,input{width:100%;background:#0e0e1c;color:white;border:1px solid #39334f;border-radius:11px;padding:12px;outline:none}
+textarea:focus,input:focus{border-color:var(--purple)}
+textarea{resize:vertical;min-height:75px}
+.btn{border:0;border-radius:10px;padding:10px 17px;color:white;background:linear-gradient(110deg,#8255dc,#c15cae);font-weight:600}
+.btn.secondary{background:#302746}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:10px}
+.post{background:#141426;border:1px solid #29263e;border-radius:15px;padding:17px;margin-bottom:14px}
+.posthead{display:flex;align-items:center;gap:10px;margin-bottom:13px}
+.posthead .avatar{width:35px;height:35px}
+.post p{line-height:1.9;white-space:pre-wrap}
+.like{background:none;border:0;color:#ff83b8;padding:5px}
+.hidden{display:none!important}
+.stat{display:flex;justify-content:space-between;padding:8px 0;color:#d5cde8}
+.tabcontent{display:none}
+.tabcontent.active{display:block}
+footer{text-align:center;color:#77758f;padding:25px;font-size:12px}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.left,.right{display:none}.hero h1{font-size:22px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">MY <span>WORLD</span> ♡</div>
+  <div class="muted">دنیای آدم‌های خاص ✨</div>
+  <div class="avatar">M</div>
+</header>
+
+<div class="layout">
+<aside class="left">
+  <div class="panel">
+    <div style="display:flex;align-items:center;gap:10px">
+      <div class="avatar">M</div>
+      <div><b>دوست من</b><br><small>عضو دنیای ما</small></div>
+    </div>
+    <hr style="border-color:#29263e;margin:16px 0">
+    <nav id="desktopNav">
+      <button class="active" data-tab="home">🏠 خانه</button>
+      <button data-tab="crush">💌 Secret Crush</button>
+      <button data-tab="games">🎮 بازی‌ها</button>
+      <button data-tab="anonymous">🎭 پیام ناشناس</button>
+      <button data-tab="rooms">👥 اتاق دوستان</button>
+      <button data-tab="profile">👤 پروفایل من</button>
+    </nav>
+  </div>
+</aside>
+
+<main>
+  <section id="home" class="tabcontent active">
+    <div class="hero">
+      <h1>به دنیای خودت خوش اومدی ♡</h1>
+      <p>اینجا قراره خاطره بسازیم، بخندیم و به هم نزدیک‌تر بشیم.</p>
+    </div>
+    <div class="panel">
+      <h3>استوری‌های دوستان ✨</h3>
+      <div class="stories">
+        <div class="story"><div class="avatar">＋</div>استوری من</div>
+        <div class="story"><div class="avatar">A</div>آرین</div>
+        <div class="story"><div class="avatar">S</div>سارا</div>
+        <div class="story"><div class="avatar">M</div>مینا</div>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>چی توی ذهنته؟ 💭</h3>
+      <textarea id="postText" placeholder="یه چیزی بنویس و با بقیه به اشتراک بذار..."></textarea>
+      <div class="actions">
+        <button class="btn" onclick="addPost()">انتشار پست ♡</button>
+      </div>
+    </div>
+    <div id="feed"></div>
+  </section>
+
+  <section id="crush" class="tabcontent">
+    <div class="panel">
+      <h3>💌 Secret Crush</h3>
+      <p class="muted">یه نفر توی ذهنت هست؟ می‌تونی احساست رو محرمانه ثبت کنی.</p>
+      <input id="crushName" placeholder="نام یا نام کاربری شخص (اختیاری)">
+      <textarea id="crushMessage" placeholder="حرفی که دوست داری بهش بگی..."></textarea>
+      <div class="actions"><button class="btn" onclick="saveCrush()">ثبت پیام عاشقانه ♡</button></div>
+      <p id="crushResult" class="muted"></p>
+      <small>این نسخه آزمایشی است؛ پیام هنوز برای شخص دیگری ارسال نمی‌شود.</small>
+    </div>
+  </section>
+
+  <section id="games" class="tabcontent">
+    <div class="panel">
+      <h3>🎮 حقیقت یا جرئت</h3>
+      <p class="muted">یه سؤال تصادفی برای جمع دوستان!</p>
+      <div id="gameQuestion" style="padding:20px;background:#211a35;border-radius:12px;margin:15px 0">برای شروع روی دکمه بزن!</div>
+      <button class="btn" onclick="newQuestion()">سؤال جدید ✨</button>
+    </div>
+    <div class="panel">
+      <h3>💗 سؤال روز</h3>
+      <p>اگه همین الان می‌تونستی به یک نفر پیام بدی، به کی پیام می‌دادی؟</p>
+    </div>
+  </section>
+
+  <section id="anonymous" class="tabcontent">
+    <div class="panel">
+      <h3>🎭 صندوق پیام ناشناس</h3>
+      <p class="muted">یه حرف دوستانه یا سؤال بدون نمایش نام بنویس.</p>
+      <textarea id="anonText" placeholder="پیامت رو بنویس..."></textarea>
+      <button class="btn" style="margin-top:10px" onclick="sendAnonymous()">ثبت پیام</button>
+      <div id="anonResult" class="muted"></div>
+      <small>پیام‌ها در این نسخه فقط در همین مرورگر ذخیره می‌شوند.</small>
+    </div>
+  </section>
+
+  <section id="rooms" class="tabcontent">
+    <div class="panel">
+      <h3>👥 اتاق گفت‌وگو</h3>
+      <p class="muted">اتاق‌های پیشنهادی برای جمع دوستان</p>
+      <div class="post">🌙 شب‌نشینی دوستانه <small>گپ آزاد</small></div>
+      <div class="post">💗 حرف‌های دلی <small>گفت‌وگوی دوستانه</small></div>
+      <div class="post">🎮 گیم‌تایم <small>بازی و سرگرمی</small></div>
+      <small>چت گروهی آنلاین در مرحله اتصال به سرور فعال می‌شود.</small>
+    </div>
+  </section>
+
+  <section id="profile" class="tabcontent">
+    <div class="panel">
+      <h3>👤 پروفایل من</h3>
+      <div class="avatar" style="width:70px;height:70px;margin-bottom:15px">M</div>
+      <input id="profileName" placeholder="اسم نمایشی">
+      <textarea id="profileBio" placeholder="یه بیو کوتاه درباره خودت..."></textarea>
+      <button class="btn" style="margin-top:10px" onclick="saveProfile()">ذخیره پروفایل</button>
+      <p id="profileResult" class="muted"></p>
+    </div>
+  </section>
+</main>
+
+<aside class="right">
+  <div class="panel">
+    <h3>✨ حال و هوای امروز</h3>
+    <p class="muted">امروز یه فرصت جدیده برای ساختن خاطره‌های قشنگ.</p>
+  </div>
+  <div class="panel">
+    <h3>💜 دنیای ما</h3>
+    <div class="stat"><span>حال خوب</span><span>∞</span></div>
+    <div class="stat"><span>دوستی</span><span>♡</span></div>
+    <div class="stat"><span>خاطره</span><span>✨</span></div>
+  </div>
+</aside>
+</div>
+
+<footer>MY WORLD ♡ | دنیای کوچیک ما، پر از حس‌های قشنگ</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+const get = key => JSON.parse(localStorage.getItem(key)||"[]");
+const set = (key,value) => localStorage.setItem(key,JSON.stringify(value));
+
+function showTab(id){
+ document.querySelectorAll('.tabcontent').forEach(x=>x.classList.remove('active'));
+ $(id).classList.add('active');
+ document.querySelectorAll('[data-tab]').forEach(x=>x.classList.toggle('active',x.dataset.tab===id));
+}
+document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>showTab(b.dataset.tab));
+
+function renderFeed(){
+ $('feed').innerHTML='';
+ get('mw_posts').reverse().forEach((p,i)=>{
+  const article=document.createElement('article');
+  article.className='post';
+  const head=document.createElement('b');
+  head.textContent=p.name||'دوست من';
+  const body=document.createElement('p');
+  body.textContent=p.text;
+  const date=document.createElement('small');
+  date.textContent=p.date;
+  const like=document.createElement('button');
+  like.className='like';
+  like.textContent='♡ دوست داشتم';
+  like.onclick=()=>{like.textContent='♥ دوست داشتم';};
+  article.append(head,date,body,like);
+  $('feed').append(article);
+ });
+}
+function addPost(){
+ const text=$('postText').value.trim();
+ if(!text)return alert('اول یه چیزی بنویس!');
+ const posts=get('mw_posts');
+ posts.push({name:localStorage.getItem('mw_name')||'دوست من',text,date:new Date().toLocaleString('fa-IR')});
+ set('mw_posts',posts);
+ $('postText').value='';
+ renderFeed();
+}
+function saveCrush(){
+ const name=$('crushName').value.trim();
+ const msg=$('crushMessage').value.trim();
+ if(!msg)return alert('پیامت رو بنویس!');
+ const arr=get('mw_crush');
+ arr.push({name,msg});
+ set('mw_crush',arr);
+ $('crushResult').textContent='پیامت در نسخه آزمایشی ذخیره شد 💗';
+ $('crushMessage').value='';
+}
+function sendAnonymous(){
+ const msg=$('anonText').value.trim();
+ if(!msg)return alert('پیامت خالیه!');
+ const arr=get('mw_anon');
+ arr.push(msg);
+ set('mw_anon',arr);
+ $('anonText').value='';
+ $('anonResult').textContent='پیامت در همین دستگاه ثبت شد ♡';
+}
+const questions=[
+ 'آخرین باری که از ته دل خندیدی کی بود؟',
+ 'اگه می‌تونستی به یک نفر یه راز بگی، کی بود؟',
+ 'بزرگ‌ترین سوتی زندگیت چی بوده؟',
+ 'کدوم خاطره رو هیچ‌وقت فراموش نمی‌کنی؟',
+ 'اگه یک روز نامرئی بودی چیکار می‌کردی؟',
+ 'چه ویژگی‌ای توی یک آدم برات جذابه؟'
+];
+function newQuestion(){
+ $('gameQuestion').textContent=questions[Math.floor(Math.random()*questions.length)];
+}
+function saveProfile(){
+ const name=$('profileName').value.trim();
+ localStorage.setItem('mw_name',name||'دوست من');
+ localStorage.setItem('mw_bio',$('profileBio').value);
+ $('profileResult').textContent='پروفایلت ذخیره شد ♡';
+}
+$('profileName').value=localStorage.getItem('mw_name')||'';
+$('profileBio').value=localStorage.getItem('mw_bio')||'';
+renderFeed();
+</script>
+</body>
+</html>
